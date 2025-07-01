@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="main.java.RFIDController"
+      spacing="15"
+      alignment="CENTER"
+      style="-fx-padding: 20;
+		      -fx-background-image: url('/images/login1.jpg');
+		      -fx-background-size: cover;   
+		      -fx-background-position: center center;
+		      -fx-background-color: #000;">
+
+    <Label text="RFID Tag Reader/Writer" style="-fx-font-size: 20px; -fx-text-fill: #fff;"/>
+
+    <TextField fx:id="tagField"
+               promptText="Enter or scan Tag ID"
+               style="-fx-font-size: 14px; -fx-pref-width: 50; -fx-background-radius: 5;"/>
+
+    <HBox spacing="15" alignment="CENTER">
+        <Button text="Scan Tag"
+                onAction="#handleScan"
+                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Write Tag"
+                onAction="#handleWrite"
+                style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        <Button text="Refresh"
+            onAction="#handleRefresh"
+            style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-font-weight: bold;"/>
+        
+    </HBox>
+
+    <Label fx:id="statusLabel"
+           text=""
+           wrapText="true"
+           style="-fx-font-size: 14px; -fx-padding: 10px; -fx-background-radius: 5;"/>
+
+    <TextArea fx:id="logArea"
+              editable="false"
+              wrapText="true"
+              prefHeight="150"
+              style="-fx-font-family: 'Consolas'; -fx-background-radius: 5; -fx-border-color: #ccc;"/>
+     
+</VBox>

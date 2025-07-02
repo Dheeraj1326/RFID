@@ -28,7 +28,6 @@ public class MainApp extends Application {
     	InputStream inputStream = MainApp.class.getClassLoader().getResourceAsStream(PROPERTIES_FILE_PATH);
     	try {
 			properties.load(inputStream);
-			System.out.println(inputStream);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -24,7 +24,6 @@ style="-fx-padding: 20;
 <TextField fx:id="tagField" 
 promptText="Enter or scan Tag ID"
 prefWidth="300"
-
 style="-fx-font-size: 14px; -fx-background-radius: 5;"/>
 
 <HBox spacing="15" alignment="CENTER">
@@ -45,7 +44,7 @@ style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-font-weight: bol
 <Label fx:id="statusLabel"
 text=""
 wrapText="true"
-prefWidth="400"
+prefWidth="350"
 style="-fx-font-size: 14px; -fx-padding: 10px; -fx-background-radius: 5;"/>
 
 <TextArea fx:id="logArea"

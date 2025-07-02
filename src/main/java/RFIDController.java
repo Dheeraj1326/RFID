@@ -14,8 +14,8 @@ public class RFIDController {
     @FXML private Label statusLabel;
     @FXML private TextArea logArea;
 
-    private final SerialService serialService = new SerialService("COM3"); // Update COM port
-
+    private final SerialService serialService = new SerialService(MainApp.properties.getProperty("rfid.default.port")); 
+    
     @FXML
     private void handleScan() {
         String tagId = serialService.readTag();

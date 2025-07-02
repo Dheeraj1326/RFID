@@ -1,20 +1,43 @@
 package main.java;
 
-
 import com.fazecast.jSerialComm.SerialPort;
+
 
 public class SerialService {
     private SerialPort port;
 
-    public SerialService(String portName) {
+    public SerialService(String portName){
+    	
+    	int baudrate = Integer.parseInt(MainApp.properties.getProperty("serial.baudrate"));
+    	int dataBits = Integer.parseInt(MainApp.properties.getProperty("serial.databits"));
+    	int stopBits = Integer.parseInt(MainApp.properties.getProperty("serial.stopbits"));
+    	int parity = Integer.parseInt(MainApp.properties.getProperty("serial.parity"));
+    	
         port = SerialPort.getCommPort(portName);
-        port.setBaudRate(9600);
+        port.setBaudRate(baudrate);
+        port.setNumDataBits(dataBits);
+        port.setNumStopBits(stopBits);
+        port.setParity(parity);
         port.setComPortTimeouts(SerialPort.TIMEOUT_READ_BLOCKING, 1000, 1000);
-        port.openPort();
+        
+        if (port.openPort()) {
+            System.out.println("Serial port opened successfully");
+            System.out.println("Port: " + portName);
+            System.out.println("Baud Rate: " + baudrate);
+            System.out.println("Data Bits: " + dataBits);
+            System.out.println("Stop Bits: " + stopBits);
+            System.out.println("Parity: " + parity);
+        } else {
+            System.err.println("Failed to open serial port: " + portName);
+           
+        }
+        
+        
     }
 
     public String readTag() {
     	
+    		
     	    byte[] buffer = new byte[64];
     	    int len = port.readBytes(buffer, buffer.length);
 
@@ -29,7 +52,7 @@ public class SerialService {
     public boolean writeTag(String newId) {
         if (newId == null || newId.isEmpty()) return false;
 
-        byte[] data = newId.getBytes();  // optionally specify encoding
+        byte[] data = newId.getBytes();  
         int bytesWritten = port.writeBytes(data, data.length);
 
         return bytesWritten > 0;
